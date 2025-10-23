@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyWise AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <div id="dashboard-container">
+            <h1>AI StudyMate Dashboard</h1>
+            <p class="subtitle">Your personal AI-powered study partner.</p>
+            <div class="dashboard-grid">
+                <button class="dashboard-btn" data-target="quiz-setup-container">📝 <br>Take a Quiz</button>
+                <button class="dashboard-btn" data-target="reports-container">📊 <br>View Reports</button>
+                <button class="dashboard-btn" data-target="notes-container">🗒️ <br>Notes Helper</button>
+                <button class="dashboard-btn" data-target="exam-prep-container">🗓️ <br>Exam Prep</button>
+                <button class="dashboard-btn" data-target="material-suggestion-container">📚 <br>Material Suggestion</button>
+                <!-- NEW "Stay Concentrated" Button -->
+                <button class="dashboard-btn" data-target="concentration-container">🎯 <br>Stay Concentrated</button>
+            </div>
+        </div>
+
+        <div id="quiz-setup-container" class="page-container hidden">
+            <button class="back-btn">← Back to Dashboard</button>
+            <h1>📝 Create a Quiz</h1>
+            <div class="setup-box">
+                <h2>1. Provide Your Syllabus</h2>
+                <p>Paste topics (one per line) OR upload a syllabus PDF.</p>
+                <textarea id="syllabus-input" rows="4" placeholder="Example:&#10;Photosynthesis&#10;Cellular Respiration"></textarea>
+                <label for="syllabus-pdf-upload" class="file-upload-label">
+                    <span>📤 Upload Syllabus PDF</span>
+                    <input type="file" id="syllabus-pdf-upload" accept=".pdf">
+                </label>
+                <p id="pdf-status"></p>
+            </div>
+
+            <div class="setup-box">
+                <h2>2. Configure Your Quiz</h2>
+                <label for="topic-select">Select a Topic:</label>
+                <select id="topic-select" disabled>
+                    <option>Provide syllabus first</option>
+                </select>
+
+                <label for="num-questions">Number of Questions:</label>
+                <input type="number" id="num-questions" value="5" min="1" max="15">
+
+                <label for="difficulty-select">Difficulty:</label>
+                <select id="difficulty-select">
+                    <option value="easy">Easy</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+
+                <!-- NEW Quiz Timer Input -->
+                <label for="quiz-duration">Quiz Duration (in minutes, 0 for no timer):</label>
+                <input type="number" id="quiz-duration" value="0" min="0" max="120">
+            </div>
+
+            <button id="start-quiz-btn">Generate Quiz</button>
+        </div>
+
+        <div id="quiz-container" class="page-container hidden">
+            <!-- NEW Quiz Timer Display -->
+            <div id="quiz-timer-display" class="hidden">Time Left: <span id="quiz-timer">00:00</span></div>
+            <!-- Quiz questions will be dynamically added here -->
+        </div>
+
+        <div id="reports-container" class="page-container hidden">
+            <button class="back-btn">← Back to Dashboard</button>
+            <h1>📊 Past Reports</h1>
+            <div id="past-reports-list">
+                <p>Your past quiz reports will appear here.</p>
+            </div>
+        </div>
+
+        <div id="notes-container" class="page-container hidden">
+            <button class="back-btn">← Back to Dashboard</button>
+            <h1>🗒️ Notes Helper</h1>
+            <div class="setup-box">
+                <h2>1. Upload Your Notes</h2>
+                <p>Upload your class notes, textbook chapters, or even handwritten notes as a PDF.</p>
+                <label for="notes-pdf-upload" class="file-upload-label">
+                    <span>📤 Upload Notes PDF</span>
+                    <input type="file" id="notes-pdf-upload" accept=".pdf">
+                </label>
+                <p id="notes-pdf-status"></p>
+            </div>
+             <div class="setup-box">
+                <h2>2. Choose an Action</h2>
+                <div class="action-buttons">
+                    <button class="action-btn" id="summarize-btn" disabled>Summarize</button>
+                    <button class="action-btn" id="expand-btn" disabled>Expand</button>
+                </div>
+            </div>
+            <div id="notes-output-container" class="hidden">
+                <h2>Generated Notes</h2>
+                <div id="processed-notes-text" class="summary-box"></div>
+                <button id="download-notes-pdf-btn">Download as PDF</button>
+            </div>
+            <hr class="section-divider">
+            <h2>Past Notes</h2>
+            <div id="past-notes-list"><p>Your past generated notes will appear here.</p></div>
+        </div>
+
+
+        <div id="exam-prep-container" class="page-container hidden">
+             <button class="back-btn">← Back to Dashboard</button>
+            <h1>🗓️ Exam Prep Planner</h1>
+            <div class="setup-box">
+                <h2>1. Enter Exam Details</h2>
+                <label for="exam-date">Your Exam Date:</label>
+                <input type="date" id="exam-date">
+            </div>
+            <div class="setup-box">
+                <h2>2. Upload Syllabus</h2>
+                 <label for="exam-syllabus-upload" class="file-upload-label">
+                    <span>📤 Upload Syllabus PDF</span>
+                    <input type="file" id="exam-syllabus-upload" accept=".pdf">
+                </label>
+                <p id="exam-syllabus-status"></p>
+            </div>
+            <button id="generate-plan-btn">Generate Study Plan</button>
+            <div id="plan-output-container" class="hidden">
+                 <h2>Your Plan is Ready!</h2>
+                 <p>Your personalized study plan has been generated.</p>
+                 <button id="download-plan-pdf-btn">Download Plan as PDF</button>
+            </div>
+        </div>
+
+        <div id="material-suggestion-container" class="page-container hidden">
+            <button class="back-btn">← Back to Dashboard</button>
+            <h1>📚 Material Suggestion</h1>
+            <div class="setup-box">
+                <h2>1. Provide Your Syllabus</h2>
+                <p>Paste topics (one per line) OR upload a syllabus PDF to get relevant book/material suggestions.</p>
+                <textarea id="material-syllabus-input" rows="4" placeholder="Example:&#10;Quantum Mechanics&#10;Special Relativity"></textarea>
+                <label for="material-syllabus-pdf-upload" class="file-upload-label">
+                    <span>📤 Upload Syllabus PDF</span>
+                    <input type="file" id="material-syllabus-pdf-upload" accept=".pdf">
+                </label>
+                <p id="material-pdf-status"></p>
+            </div>
+            <button id="get-suggestions-btn">Get Suggestions</button>
+            <div id="suggestions-output-container" class="hidden">
+                <h2>Suggested Materials</h2>
+                <div id="suggestions-list"></div>
+            </div>
+        </div>
+
+        <!-- NEW "Stay Concentrated" Page -->
+        <div id="concentration-container" class="page-container hidden">
+            <button class="back-btn">← Back to Dashboard</button>
+            <h1>🎯 Stay Concentrated</h1>
+            <div class="setup-box">
+                <h2>Set Your Focus Timer</h2>
+                <p>Enter the duration you want to focus. The screen will go fullscreen, and you won't be able to exit until the timer is up.</p>
+                <label for="concentration-duration">Duration (in minutes):</label>
+                <input type="number" id="concentration-duration" value="25" min="1" max="180">
+            </div>
+            <button id="start-concentration-btn" class="action-btn" style="width: 100%; background-color: #4a47a3;">Start Focus Session</button>
+        </div>
+
+
+        <div id="results-container" class="page-container hidden">
+            <h2>Quiz Results</h2>
+            <div id="report-summary" class="summary-box"></div>
+            <p id="score-text">Your Score: 0/0</p>
+            <div id="results-breakdown"></div>
+            <div id="video-suggestions-container">
+                <h3>🎓 Recommended Videos to Help You Study:</h3>
+                <div id="video-list"></div>
+            </div>
+            <button id="back-to-dashboard-btn">← Back to Dashboard</button>
+        </div>
+
+        <div id="loader" class="hidden">
+            <div class="spinner"></div>
+            <p id="loader-text">Loading...</p>
+        </div>
+    </div>
+
+    <button id="chatbot-toggle-btn">💬</button>
+
+    <div id="chatbot-container" class="hidden">
+        <div id="chatbot-header">
+            <h3>AI Study Coach</h3>
+            <button id="chatbot-close-btn">&times;</button>
+        </div>
+        <div id="chatbot-messages">
+            <div class="chat-message bot">Hello! I'm your AI Study Coach. Ask me about your performance, or for study tips!</div>
+        </div>
+        <div id="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Ask a question...">
+            <button id="chatbot-send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- NEW Fullscreen Concentration Overlay -->
+    <div id="concentration-overlay" class="hidden">
+        <div id="concentration-countdown-display">
+            <p>Time Remaining</p>
+            <h2 id="concentration-timer">00:00</h2>
+            <p>Stay focused! You can do this.</p>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,502 @@
+/* --- General Body & Container --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top for longer pages */
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px 15px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+h1 {
+    color: #4a47a3;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+}
+
+.hidden {
+    display: none !important; /* Use important to override other display properties */
+}
+
+/* --- Dashboard --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-btn {
+    background-color: #f8f9fa;
+    color: #4a47a3;
+    border: 2px solid #e0e7ff;
+    padding: 25px 15px;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1.4;
+}
+
+.dashboard-btn:hover {
+    background-color: #e0e7ff;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(74, 71, 163, 0.15);
+}
+
+/* --- Page Containers & Navigation --- */
+.page-container {
+    text-align: left;
+}
+
+.back-btn, #back-to-dashboard-btn {
+    background: none;
+    border: none;
+    color: #4a47a3;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+/* --- Quiz Setup & General Forms (IMPROVED) --- */
+.setup-box {
+    margin-bottom: 25px;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e7ff;
+    border-left: 5px solid #4a47a3;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: left;
+}
+
+
+h2 {
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+textarea, select, input[type="number"], input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.file-upload-label {
+    display: inline-block;
+    background-color: #eef2ff;
+    color: #4a47a3;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+.file-upload-label:hover {
+    background-color: #e0e7ff;
+}
+input[type="file"] {
+    display: none;
+}
+#pdf-status, #notes-pdf-status, #exam-syllabus-status, #material-pdf-status {
+    margin-top: 10px;
+    color: #4caf50;
+    font-weight: 600;
+}
+
+button#start-quiz-btn, button#generate-plan-btn, button#download-notes-pdf-btn, button#download-plan-pdf-btn, button#get-suggestions-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+button#start-quiz-btn:hover, button#generate-plan-btn:hover, button#download-notes-pdf-btn:hover, button#download-plan-pdf-btn:hover, button#get-suggestions-btn:hover {
+    background-color: #45a049;
+}
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* --- Notes Helper & Exam Prep --- */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+.action-btn {
+    flex-grow: 1;
+    background-color: #4a47a3;
+    color: white;
+    padding: 15px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.action-btn:hover:not(:disabled) {
+    background-color: #3b388a;
+}
+.section-divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 40px 0;
+}
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid #4a47a3;
+}
+.history-item .download-history-btn {
+    background-color: #4a47a3;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.history-item .download-history-btn:hover {
+    background-color: #3b388a;
+}
+
+/* --- Material Suggestions --- */
+#suggestions-list {
+    margin-top: 20px;
+    text-align: left;
+}
+.suggestion-item {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+.suggestion-item a {
+    text-decoration: none;
+    color: #4a47a3;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+.suggestion-item p {
+    margin: 5px 0 0 0;
+    color: #555;
+}
+
+
+/* --- Quiz & Results --- */
+
+/* ---
+FIXED Quiz Timer Style
+Changed 'top' and 'margin' to be 0 or positive values
+--- */
+#quiz-timer-display {
+    position: sticky;
+    top: 0; /* CHANGED: Was -30px. This makes it stick to the top of the viewport *within* its container */
+    background-color: #4a47a3;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    z-index: 10;
+    width: fit-content;
+    margin: 0 auto 20px auto; /* CHANGED: Was -30px. Removed negative top margin */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.question-block {
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.question-text {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.option-btn {
+    background-color: #f0f4f8;
+    border: 2px solid #e0e0e0;
+    text-align: left;
+    padding: 15px;
+    width: 100%;
+    color: #333; /* Explicitly set color for visibility */
+    transition: all 0.2s ease;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.option-btn.selected {
+    background-color: #cddc39;
+    border-color: #afb42b;
+    color: #333; /* Ensure text is still readable on selection */
+}
+
+#score-text {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.summary-box {
+    background-color: #eef2ff;
+    border-left: 5px solid #4a47a3;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    text-align: left;
+    white-space: pre-wrap; /* To respect formatting from the AI */
+}
+
+.result-item {
+    padding: 15px; margin-bottom: 10px; border-radius: 8px; border-left: 5px solid; text-align: left;
+}
+.result-item.correct { background-color: #e8f5e9; border-color: #4caf50; }
+.result-item.incorrect { background-color: #ffebee; border-color: #f44336; }
+.result-item p { margin: 5px 0; }
+
+#video-suggestions-container {
+    text-align: left;
+    margin-top: 30px;
+}
+#video-list a {
+    display: block; margin-top: 10px; text-decoration: none; color: #4a47a3; font-weight: 600;
+}
+#past-reports-list .report-card {
+    background-color: #f8f9fa; border: 1px solid #e0e0e0; padding: 15px; margin-bottom: 10px; border-radius: 8px; cursor: pointer; text-align: left;
+}
+#past-reports-list .report-card:hover { background-color: #eef2ff; }
+
+/* --- Loader --- */
+#loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.8); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000;
+}
+.spinner {
+    border: 6px solid #f3f3f3; border-top: 6px solid #4a47a3; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto;
+}
+#loader-text {
+    font-weight: 600;
+    color: #333;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* --- Chatbot Styles --- */
+#chatbot-toggle-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #4a47a3;
+    color: white;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+}
+#chatbot-toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+#chatbot-container {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    max-width: 90vw;
+    height: 500px;
+    max-height: 70vh;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+    transform-origin: bottom right;
+}
+#chatbot-container.hidden {
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
+}
+
+#chatbot-header {
+    background-color: #4a47a3;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#chatbot-header h3 {
+    margin: 0;
+    font-size: 1.1em;
+}
+#chatbot-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+#chatbot-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.chat-message {
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 80%;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+.chat-message.bot {
+    background-color: #f1f0f0;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+.chat-message.user {
+    background-color: #4a47a3;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+#chatbot-input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #e0e0e0;
+}
+#chatbot-input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 15px;
+    margin-right: 10px;
+    font-size: 1em;
+}
+#chatbot-send-btn {
+    background-color: #4a47a3;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+#chatbot-send-btn:hover {
+    background-color: #3b388a;
+}
+
+/* NEW Concentration Mode Styles */
+#concentration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1a1a2e; /* Dark focus color */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2000;
+    text-align: center;
+}
+
+#concentration-countdown-display {
+    transform: translateY(-50px);
+}
+
+#concentration-countdown-display p {
+    font-size: 1.5em;
+    color: #e0e7ff;
+}
+
+#concentration-timer {
+    font-size: 8em; /* Very large timer */
+    font-weight: 700;
+    margin: 10px 0;
+    color: #ffffff;
+}
+
